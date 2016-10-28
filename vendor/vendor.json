@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "TW1TbIL4RRT4fpdvwVxph25vdKw=",
+			"path": "github.com/jcelliott/lumber",
+			"revision": "dd349441af25132d146d7095c6693a15431fc9b1",
+			"revisionTime": "2016-03-24T20:37:08Z"
+		}
+	],
+	"rootPath": "smog"
+}
