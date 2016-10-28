@@ -2,7 +2,6 @@ package smog
 
 import (
     "github.com/jcelliott/lumber"
-    "SmallCang/module/env"
 )
 
 
