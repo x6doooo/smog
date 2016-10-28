@@ -17,7 +17,7 @@ type LoggerInterface interface{
 }
 
 
-func NewLogger(filepath string, maxLine int, backups int) LoggerInterface {
+func NewLogger(filepath string, maxLine int, backups int, isDebug bool) LoggerInterface {
     logFile, err := lumber.NewFileLogger(
         //env.Conf.Log.File,
         filepath,
@@ -35,15 +35,15 @@ func NewLogger(filepath string, maxLine int, backups int) LoggerInterface {
     }
 
     var log LoggerInterface
-    if env.Conf.Env.Mode == env.ENV_MODE_PROD {
-        log = lumber.NewMultiLogger()
-        log.AddLoggers(logFile)
-    } else {
+    if isDebug {
         log = &DebugLogger{
             multiLogger: lumber.NewMultiLogger(),
         }
         logConsole := lumber.NewConsoleLogger(lumber.DEBUG)
         log.AddLoggers(logFile, logConsole)
+    } else {
+        log = lumber.NewMultiLogger()
+        log.AddLoggers(logFile)
     }
     return log
 }
