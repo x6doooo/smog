@@ -41,8 +41,11 @@ func NewLogger(filepath string, maxLine int, backups int, isDebug bool) LoggerIn
         logConsole := lumber.NewConsoleLogger(lumber.DEBUG)
         log.AddLoggers(logFile, logConsole)
     } else {
-        log = lumber.NewMultiLogger()
-        log.AddLoggers(logFile)
+        log = &DebugLogger{
+            multiLogger: lumber.NewMultiLogger(),
+        }
+        logConsole := lumber.NewConsoleLogger(lumber.INFO)
+        log.AddLoggers(logFile, logConsole)
     }
     return log
 }
